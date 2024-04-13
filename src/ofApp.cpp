@@ -32,6 +32,10 @@ void ofApp::draw() {
         // Tree
         float length = 0.31 * ofGetHeight();
         drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, 10, length, 1.5 * PI);
+         float length2 = 0.31 * ofGetHeight()/2.7;
+        drawMode2(ofGetWidth()-1195, ofGetHeight() - 20, 10, length2, 1.5 * PI);
+          float length3 = 0.31 * ofGetHeight()/2.7;
+        drawMode2(ofGetWidth()-250, ofGetHeight() - 20, 10, length3, 1.5 * PI);
     } break;
     case '3': {
         // Sierpinski Triangle
@@ -97,7 +101,8 @@ void ofApp::drawMode3(float x, float y, float size, int n) {
     ofDrawTriangle(a, b, c);
 
     drawMode3(x, y, size / 2, n - 1);
-    drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1);
+    drawMode3(x + size / 2, y, size / 2, n - 1); // Corrected this line
+    drawMode3(x + size / 4, y + (sqrt(3) * size) / 4, size / 2, n - 1); // Added this line
 }
 
 void ofApp::drawMode4(float x, float y, float n) {

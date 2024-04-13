@@ -1,22 +1,24 @@
 #pragma once
-
 #include "ofMain.h"
 #include "Fractal.h"
-
-class AbstractFractal:public Fractal{
-
+using namespace std;
+class AbstractFractal : public Fractal {
 protected:
-string name;
-int level;
+    string name;
+    int level;
 
 public:
-AbstractFractal(){}
-AbstractFractal(string name,int level){
-    this->name=name;
-    this->level=level;
-}
-string getName(){return name;}
-int getLevel(){return level;}
-void setName(){this->name=name;}
+    AbstractFractal() : level(0) {} // Default constructor
+    AbstractFractal(const string& name, int level) : name(name), level(level) {} // Constructor to initialize name and level
 
+    // Getter methods
+    virtual std::string getName() const override { return name; }
+    virtual int getLevel() const override { return level; }
+
+    // Setter methods
+    virtual void setName(const string& name) override { this->name = name; }
+    virtual void setLevel(int level) override { this->level = level; }
+
+
+    virtual ~AbstractFractal() {}
 };

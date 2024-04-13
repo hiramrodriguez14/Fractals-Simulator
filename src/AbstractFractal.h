@@ -1,6 +1,6 @@
 #pragma once
-#include "ofMain.h"
 #include "Fractal.h"
+#include "ofMain.h"
 using namespace std;
 class AbstractFractal : public Fractal {
 protected:
@@ -12,12 +12,12 @@ public:
     AbstractFractal(const string& name, int level) : name(name), level(level) {} // Constructor to initialize name and level
 
     // Getter methods
-    virtual std::string getName() const override { return name; }
-    virtual int getLevel() const override { return level; }
+    virtual std::string getName() const { return name; }
+    virtual int getLevel() const { return level; }
 
     // Setter methods
-    virtual void setName(const string& name) override { this->name = name; }
-    virtual void setLevel(int level) override { this->level = level; }
+    virtual void setName(const string& name)  { this->name = name; }
+    virtual void setLevel(int level)  { this->level = level; }
 
 
     virtual ~AbstractFractal() {}

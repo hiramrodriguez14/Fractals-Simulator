@@ -28,45 +28,50 @@ void ofApp::update() {
 void ofApp::draw() {
     ofBackgroundGradient(ofColor(65), ofColor(0), OF_GRADIENT_BAR);
 
-    text.drawString("(Insert Fractal Name Here)",25,60);
+    text.drawString(s,25,60);
 
     ofNoFill();
     switch (mode) {
     case '1': {
         // Circle
-       
+        s = "Circle";
         float r = 0.31 * ofGetHeight();
-        fractals[0]->draw(ofGetWidth() / 2, ofGetHeight() / 2,3,0,r, 0);
+        fractals[0]->draw(ofGetWidth() / 2, ofGetHeight() / 2, 3+increasecircle, 0, r, 0);
         
     } break;
     case '2': {
         // Tree
-    float length = 0.31 * ofGetHeight();
-      float length2 = 0.31 * ofGetHeight()/2.7;
-       float length3 = 0.31 * ofGetHeight()/2.7;
-        fractals[1]->draw(ofGetWidth() / 2, ofGetHeight() - 20, 10,0,1.5 * PI, length);
-        fractals[1]->draw(ofGetWidth()-1195, ofGetHeight() - 20, 10,0,1.5 * PI, length2);
-        fractals[1]->draw(ofGetWidth()-250, ofGetHeight() - 20, 10,0,1.5 * PI, length3);
+        s = "Tree";
+        float length = 0.31 * ofGetHeight();
+        float length2 = 0.31 * ofGetHeight()/2.7;
+        float length3 = 0.31 * ofGetHeight()/2.7;
+        fractals[1]->draw(ofGetWidth() / 2, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length);
+        fractals[1]->draw(ofGetWidth()-1195, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length2);
+        fractals[1]->draw(ofGetWidth()-250, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length3);
 
     } break;
     case '3': {
         // Sierpinski Triangle
+        s = "Sierpinski Triangle";
         float size = 0.88 * ofGetHeight();
-        fractals[2]->draw((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size,7, size,0,0);
+        fractals[2]->draw((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, 7+increasetriangle, size,0,0);
        
     } break;
     case '4': {
         // Barnsley Fern
-        fractals[3]->draw(0, 0, 10 * 1000,0,0,0);
+        s = "Barnsley Fern";
+        fractals[3]->draw(0, 0, (10+increasebarleyfern) * 1000, 0, 0, 0);
    
     }    break;
     case '5': {
         // Koch SnowFlake
+        s = "Koch SnowFlake";
         SnowFlake().draw();
     }   break;
     case '6': {
         //3d Fractal
-        Fractal3D(&cam).draw(map<string, float> {{"n", 3}, {"scale", 100}});
+        s = "3d Fractal";
+        Fractal3D(&cam).draw(map<string, float> {{"n", 3+increase3dfractal}, {"scale", 100}});
     }   break;
     }
 }
@@ -75,6 +80,62 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key) {
     if (key >= '1' && key <= '6'){
         mode = key;
+    }
+        switch (mode) {
+    case '1': {
+        // Circle
+        if (key=='>' && increasecircle < 2){
+            increasecircle += 1;
+        }
+        else if (key=='<' && increasecircle > -2){
+            increasecircle -= 1;
+        }
+    } break;
+    case '2': {
+        // Tree
+    	if (key=='>' && increasetree < 5){
+            increasetree += 1;
+        }
+        else if (key=='<' && increasetree > -9){
+            increasetree -= 1;
+        }
+    } break;
+    case '3': {
+        // Sierpinski Triangle
+    	if (key=='>' && increasetriangle < 3){
+            increasetriangle += 1;
+        }
+        else if (key=='<' && increasetriangle > -6){
+            increasetriangle -= 1;
+        }
+    } break;
+    case '4': {
+        // Barnsley Fern
+        if (key=='>' && increasebarleyfern < 40){
+            increasebarleyfern += 1;
+        }
+        else if (key=='<' && increasebarleyfern > -9){
+            increasebarleyfern -= 1;
+        }
+    }    break;
+    case '5': {
+        // Koch SnowFlake
+        if (key=='>' && increasesnowflake < 1){
+            increasesnowflake += 1;
+        }
+        else if (key=='<' && increasesnowflake > -4){
+            increasesnowflake -= 1;
+        }
+    }   break;
+    case '6': {
+        //3d Fractal
+        if (key=='>' && increase3dfractal < 6){
+            increase3dfractal += 1;
+        }
+        else if (key=='<' && increase3dfractal > -2){
+            increase3dfractal -= 1;
+        }
+    }   break;
     }
 }
 

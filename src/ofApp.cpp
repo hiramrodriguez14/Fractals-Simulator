@@ -66,7 +66,7 @@ void ofApp::draw() {
     case '5': {
         // Koch SnowFlake
         s = "Koch SnowFlake";
-        SnowFlake().draw();
+        SnowFlake().draw(5+increasesnowflake);
     }   break;
     case '6': {
         //3d Fractal

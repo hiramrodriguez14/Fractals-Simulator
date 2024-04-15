@@ -13,12 +13,13 @@ class ofApp : public ofBaseApp {
   private:
     char mode = '1';
     string s = "Fractals";
-    int increasecircle = 0;
-    int increasetree = 0;
-    int increasetriangle = 0;
-    int increasebarleyfern = 0;
-    int increasesnowflake = 0;
-    int increase3dfractal = 0;
+    bool extra = false;
+    float increasecircle = 0;
+    float increasetree = 0;
+    float increasetriangle = 0;
+    float increasebarleyfern = 0;
+    float increasesnowflake = 0;
+    float increase3dfractal = 0;
   
      std::vector<Fractal*> fractals;
   public:

@@ -3,18 +3,38 @@
 
 
 void Circle::draw(float x, float y, int n,float size,float r, float length) {
-     angle += 0.0001;
+   angle += 0.000001;
+   ofColor color;
    if (n == 0) return;
+   if (n == 1){
+    color = ofColor::pink;
+   }
+   if (n == 2){
+    color = ofColor::purple;
+   }
+   if (n == 3){
+    color = ofColor::blue;
+   }
+   if (n == 4){
+    color = ofColor::cyan;
+   }
+   if (n == 5){
+    color=ofColor::green;
+   }
+
+   ofNoFill();
+   ofSetColor(color);
+    
 
     int delta = r * 0.35;
     ofDrawCircle(x, y, r);
 
-    float angle1 = angle;
-    float angle2 = PI / 3 + angle;
-    float angle3 = PI + angle;
-    float angle4 = 2 * PI / 3 + angle;
-    float angle5 = 4 * PI / 3 + angle;
-    float angle6 = 5 * PI / 3 + angle;
+    double angle1 = angle;
+    double angle2 = PI / 3 + angle;
+    double angle3 = PI + angle;
+    double angle4 = 2 * PI / 3 + angle;
+    double angle5 = 4 * PI / 3 + angle;
+    double angle6 = 5 * PI / 3 + angle;
     draw(x + r * cos(angle1), y + r * sin(angle1),n - 1,0, delta,0);
     draw(x + r * cos(angle2), y + r * sin(angle2),n - 1,0, delta,0);
     draw(x + r * cos(angle3), y + r * sin(angle3),n - 1,0, delta,0);

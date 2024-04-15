@@ -28,9 +28,21 @@ void ofApp::update() {
 void ofApp::draw() {
     ofBackgroundGradient(ofColor(65), ofColor(0), OF_GRADIENT_BAR);
 
-    text.drawString(s,25,60);
-
     ofNoFill();
+    ofSetColor(ofColor::white);
+    text.drawString(s,25,60);
+    dataText.drawString("Press Right Arrow to level up the Recursion",1025,30);
+    dataText.drawString("Press Right Arrow to level down the Recursion",1025,60);
+    if (extra == true){
+        dataText.drawString("1.Circle level: "+to_string(3 + increasecircle),25,90);
+        dataText.drawString("2.Tree level: "+to_string(10 + increasetree),25,120);
+        dataText.drawString("3.Triangle level: "+to_string(7 + increasetriangle),25,150);
+        dataText.drawString("4.Barnsley level: "+to_string(10 + increasebarleyfern),25,180);
+        dataText.drawString("5.SnowFlake level: "+to_string(5 + increasesnowflake),25,210);
+        dataText.drawString("6.3d Fractal level: "+to_string(3 + increase3dfractal),25,240);
+    }
+
+    
     switch (mode) {
     case '1': {
         // Circle
@@ -47,7 +59,7 @@ void ofApp::draw() {
         float length3 = 0.31 * ofGetHeight()/2.7;
         fractals[1]->draw(ofGetWidth() / 2, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length);
         fractals[1]->draw(ofGetWidth()-1195, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length2);
-        fractals[1]->draw(ofGetWidth()-250, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length3);
+        fractals[1]->draw(ofGetWidth()-180, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length3);
 
     } break;
     case '3': {
@@ -66,7 +78,7 @@ void ofApp::draw() {
     case '5': {
         // Koch SnowFlake
         s = "Koch SnowFlake";
-        SnowFlake().draw();
+        SnowFlake().draw(5+increasesnowflake);
     }   break;
     case '6': {
         //3d Fractal
@@ -78,61 +90,74 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
+    //Switch Fractals logic
     if (key >= '1' && key <= '6'){
         mode = key;
     }
+
+    //Extra info about fractals logic
+    if (tolower(key) == 'd'){
+        if (extra == true){
+            extra = false;
+        }
+        else{
+            extra = true;
+        }
+    }
+
+    //Increase and decrease recursions logic ( shift + < or shift + > )
         switch (mode) {
     case '1': {
         // Circle
-        if (key=='>' && increasecircle < 2){
+        if (key==OF_KEY_RIGHT && increasecircle < 2){
             increasecircle += 1;
         }
-        else if (key=='<' && increasecircle > -2){
+        else if (key==OF_KEY_LEFT && increasecircle > -2){
             increasecircle -= 1;
         }
     } break;
     case '2': {
         // Tree
-    	if (key=='>' && increasetree < 5){
+    	if (key==OF_KEY_RIGHT && increasetree < 5){
             increasetree += 1;
         }
-        else if (key=='<' && increasetree > -9){
+        else if (key==OF_KEY_LEFT && increasetree > -9){
             increasetree -= 1;
         }
     } break;
     case '3': {
         // Sierpinski Triangle
-    	if (key=='>' && increasetriangle < 3){
+    	if (key==OF_KEY_RIGHT && increasetriangle < 3){
             increasetriangle += 1;
         }
-        else if (key=='<' && increasetriangle > -6){
+        else if (key==OF_KEY_LEFT && increasetriangle > -6){
             increasetriangle -= 1;
         }
     } break;
     case '4': {
         // Barnsley Fern
-        if (key=='>' && increasebarleyfern < 40){
+        if (key==OF_KEY_RIGHT && increasebarleyfern < 40){
             increasebarleyfern += 1;
         }
-        else if (key=='<' && increasebarleyfern > -9){
+        else if (key==OF_KEY_LEFT && increasebarleyfern > -5){
             increasebarleyfern -= 1;
         }
     }    break;
     case '5': {
         // Koch SnowFlake
-        if (key=='>' && increasesnowflake < 1){
+        if (key==OF_KEY_RIGHT && increasesnowflake < 1){
             increasesnowflake += 1;
         }
-        else if (key=='<' && increasesnowflake > -4){
+        else if (key==OF_KEY_LEFT && increasesnowflake > -4){
             increasesnowflake -= 1;
         }
     }   break;
     case '6': {
         //3d Fractal
-        if (key=='>' && increase3dfractal < 6){
+        if (key==OF_KEY_RIGHT && increase3dfractal < 6){
             increase3dfractal += 1;
         }
-        else if (key=='<' && increase3dfractal > -2){
+        else if (key==OF_KEY_LEFT && increase3dfractal > -3){
             increase3dfractal -= 1;
         }
     }   break;

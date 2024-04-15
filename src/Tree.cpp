@@ -3,7 +3,18 @@
 
 void Tree::draw(float x, float y, int n,float size,float r, float length) {
   if (n == 0) return;
-
+  if (n>=1 && n<=5){
+    ofNoFill();
+    ofSetColor( 17*n, 255, 17*n);
+  }
+  if (n>=6 && n<=10){
+    ofNoFill();
+    ofSetColor( 17*n, 17*n, 255);
+  }
+  if (n>=11 && n<=15){
+    ofNoFill();
+    ofSetColor( 255, 17*n, 17*n);
+  }
     float x2 = x + length * cos(r);
     float y2 = y + length * sin(r);
 

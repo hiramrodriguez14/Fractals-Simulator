@@ -8,7 +8,7 @@ void Fern::draw(float x, float y, int n,float size,float r, float length) {
 
     float px = ofMap(x, -2.1820, 2.6558, 0, ofGetWidth());
     float py = ofMap(y, 0, 9.9983, ofGetHeight(), 0);
-
+    
     ofFill();
     ofSetColor(ofColor::green);
     ofDrawCircle(px, py, 0.6);

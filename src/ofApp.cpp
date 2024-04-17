@@ -22,6 +22,126 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
+    //All logic inside the update is for the Fractals Animations
+    ticks += 1;
+    switch (mode) {
+    case '1': {
+        // Circle
+        if (circleAnimation == true && ticks == 60){
+            if(increase == true){
+                increasecircle += 1;
+                if(increasecircle == 2){
+                    increase = false;
+                }
+            }
+            else{
+                increasecircle -= 1;
+                if(increasecircle == -2){
+                    increase = true;
+                }
+            }
+            ticks = 0;
+        }
+        
+    } break;
+    case '2': {
+        // Tree
+        if (treeAnimation == true && ticks == 50){
+            if(increase == true){
+                increasetree += 1;
+                if(increasetree == 5){
+                    increase = false;
+                }
+            }
+            else{
+                increasetree -= 1;
+                if(increasetree == -9){
+                    increase = true;
+                }
+            }
+            ticks = 0;
+        }
+
+    } break;
+    case '3': {
+        // Sierpinski Triangle
+        if (triangleAnimation == true && ticks == 50){
+            if(increase == true){
+                increasetriangle += 1;
+                if(increasetriangle == 3){
+                    increase = false;
+                }
+            }
+            else{
+                increasetriangle -= 1;
+                if(increasetriangle == -6){
+                    increase = true;
+                }
+            }
+            ticks = 0;
+        }
+       
+    } break;
+    case '4': {
+        // Barnsley Fern
+        if (barleyAnimation == true && ticks == 10){
+            if(increase == true){
+                increasebarleyfern += 1;
+                if(increasebarleyfern == 40){
+                    increase = false;
+                }
+            }
+            else{
+                increasebarleyfern -= 1;
+                if(increasebarleyfern == -5){
+                    increase = true;
+                }
+            }
+            ticks = 0;
+        }
+
+    }    break;
+    case '5': {
+        // Koch SnowFlake
+        if (snowAnimation == true && ticks == 60){
+            if(increase == true){
+                increasesnowflake += 1;
+                if(increasesnowflake == 1){
+                    increase = false;
+                }
+            }
+            else{
+                increasesnowflake -= 1;
+                if(increasesnowflake == -4){
+                    increase = true;
+                }
+            }
+            ticks = 0;
+        }
+        
+    }   break;
+    case '6': {
+        //3d Fractal
+        if (DfractAnimation == true && ticks == 60){
+            if(increase == true){
+                increase3dfractal += 1;
+                if(increase3dfractal == 6){
+                    increase = false;
+                }
+            }
+            else{
+                increase3dfractal -= 1;
+                if(increase3dfractal == -3){
+                    increase = true;
+                }
+            }
+            ticks = 0;
+        }
+    }   break;
+    }
+    if (ticks == 70){
+        ticks = 0;
+    }
 }
 
 //--------------------------------------------------------------
@@ -33,6 +153,9 @@ void ofApp::draw() {
     text.drawString(s,25,60);
     dataText.drawString("Press Right Arrow to level up the Recursion",1025,30);
     dataText.drawString("Press Right Arrow to level down the Recursion",1025,60);
+    dataText.drawString("Press SpaceBar to start Animation",1025,90);
+
+    //When 'd' is pressed, extra information is drawn 
     if (extra == true){
         dataText.drawString("1.Circle level: "+to_string(3 + increasecircle),25,90);
         dataText.drawString("2.Tree level: "+to_string(10 + increasetree),25,120);
@@ -40,12 +163,28 @@ void ofApp::draw() {
         dataText.drawString("4.Barnsley level: "+to_string(10 + increasebarleyfern),25,180);
         dataText.drawString("5.SnowFlake level: "+to_string(5 + increasesnowflake),25,210);
         dataText.drawString("6.3d Fractal level: "+to_string(3 + increase3dfractal),25,240);
+
+        //if more fractals are added just write the name inside the string, write n plus its increase inside the to_string, and uncomment
+        //dataText.drawString("7.  "+to_string(),25,270);
+        //dataText.drawString("8.  "+to_string(),25,300);
+
+        dataText.drawString("Aditional Info: ",25,330);
+        dataText.drawString("Ticks per second: "+to_string(ticks),25,360);
     }
 
     
     switch (mode) {
     case '1': {
         // Circle
+        if(circleAnimation==true){
+            dataText.drawString("Arrows OFF",1025,150);
+            dataText.drawString("Animation ON",1025,120);
+        }
+        else{
+            dataText.drawString("Arrows ON",1025,150);
+            dataText.drawString("Animation OFF",1025,120);
+        }
+
         s = "Circle";
         float r = 0.31 * ofGetHeight();
         fractals[0]->draw(ofGetWidth() / 2, ofGetHeight() / 2, 3+increasecircle, 0, r, 0);
@@ -53,6 +192,15 @@ void ofApp::draw() {
     } break;
     case '2': {
         // Tree
+        if(treeAnimation==true){
+           dataText.drawString("Arrows OFF",1025,150);
+            dataText.drawString("Animation ON",1025,120);
+        }
+        else{
+            dataText.drawString("Arrows ON",1025,150);
+            dataText.drawString("Animation OFF",1025,120);
+        }
+
         s = "Tree";
         float length = 0.31 * ofGetHeight();
         float length2 = 0.31 * ofGetHeight()/2.7;
@@ -64,6 +212,15 @@ void ofApp::draw() {
     } break;
     case '3': {
         // Sierpinski Triangle
+        if(triangleAnimation==true){
+            dataText.drawString("Arrows OFF",1025,150);
+            dataText.drawString("Animation ON",1025,120);
+        }
+        else{
+            dataText.drawString("Arrows ON",1025,150);
+            dataText.drawString("Animation OFF",1025,120);
+        }
+
         s = "Sierpinski Triangle";
         float size = 0.88 * ofGetHeight();
         fractals[2]->draw((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, 7+increasetriangle, size,0,0);
@@ -71,17 +228,44 @@ void ofApp::draw() {
     } break;
     case '4': {
         // Barnsley Fern
+        if(barleyAnimation==true){
+            dataText.drawString("Arrows OFF",1025,150);
+            dataText.drawString("Animation ON",1025,120);
+        }
+        else{
+            dataText.drawString("Arrows ON",1025,150);
+            dataText.drawString("Animation OFF",1025,120);
+        }
+
         s = "Barnsley Fern";
         fractals[3]->draw(0, 0, (10+increasebarleyfern) * 1000, 0, 0, 0);
    
     }    break;
     case '5': {
         // Koch SnowFlake
+        if(snowAnimation==true){
+            dataText.drawString("Arrows OFF",1025,150);
+            dataText.drawString("Animation ON",1025,120);
+        }
+        else{
+            dataText.drawString("Arrows ON",1025,150);
+            dataText.drawString("Animation OFF",1025,120);
+        }
+
         s = "Koch SnowFlake";
         SnowFlake().draw(5+increasesnowflake);
     }   break;
     case '6': {
         //3d Fractal
+        if(DfractAnimation==true){
+            dataText.drawString("Arrows OFF",1025,150);
+            dataText.drawString("Animation ON",1025,120);
+        }
+        else{
+            dataText.drawString("Arrows ON",1025,150);
+            dataText.drawString("Animation OFF",1025,120);
+        }
+
         s = "3d Fractal";
         Fractal3D(&cam).draw(map<string, float> {{"n", 3+increase3dfractal}, {"scale", 100}});
     }   break;
@@ -105,60 +289,118 @@ void ofApp::keyPressed(int key) {
         }
     }
 
-    //Increase and decrease recursions logic ( shift + < or shift + > )
-        switch (mode) {
+    //Increase and decrease recursions logic ( shift + < or shift + > ) ------------------------------
+    switch (mode) {
     case '1': {
         // Circle
-        if (key==OF_KEY_RIGHT && increasecircle < 2){
+        if (key==OF_KEY_RIGHT && increasecircle < 2 && circleAnimation==false){
             increasecircle += 1;
         }
-        else if (key==OF_KEY_LEFT && increasecircle > -2){
+        else if (key==OF_KEY_LEFT && increasecircle > -2 && circleAnimation==false){
             increasecircle -= 1;
         }
     } break;
     case '2': {
         // Tree
-    	if (key==OF_KEY_RIGHT && increasetree < 5){
+    	if (key==OF_KEY_RIGHT && increasetree < 5 && treeAnimation==false){
             increasetree += 1;
         }
-        else if (key==OF_KEY_LEFT && increasetree > -9){
+        else if (key==OF_KEY_LEFT && increasetree > -9 && treeAnimation==false){
             increasetree -= 1;
         }
     } break;
     case '3': {
         // Sierpinski Triangle
-    	if (key==OF_KEY_RIGHT && increasetriangle < 3){
+    	if (key==OF_KEY_RIGHT && increasetriangle < 3 && triangleAnimation==false){
             increasetriangle += 1;
         }
-        else if (key==OF_KEY_LEFT && increasetriangle > -6){
+        else if (key==OF_KEY_LEFT && increasetriangle > -6 && triangleAnimation==false){
             increasetriangle -= 1;
         }
     } break;
     case '4': {
         // Barnsley Fern
-        if (key==OF_KEY_RIGHT && increasebarleyfern < 40){
+        if (key==OF_KEY_RIGHT && increasebarleyfern < 40 && barleyAnimation==false){
             increasebarleyfern += 1;
         }
-        else if (key==OF_KEY_LEFT && increasebarleyfern > -5){
+        else if (key==OF_KEY_LEFT && increasebarleyfern > -5 && barleyAnimation==false){
             increasebarleyfern -= 1;
         }
     }    break;
     case '5': {
         // Koch SnowFlake
-        if (key==OF_KEY_RIGHT && increasesnowflake < 1){
+        if (key==OF_KEY_RIGHT && increasesnowflake < 1 && snowAnimation==false){
             increasesnowflake += 1;
         }
-        else if (key==OF_KEY_LEFT && increasesnowflake > -4){
+        else if (key==OF_KEY_LEFT && increasesnowflake > -4 && snowAnimation==false){
             increasesnowflake -= 1;
         }
     }   break;
     case '6': {
         //3d Fractal
-        if (key==OF_KEY_RIGHT && increase3dfractal < 6){
+        if (key==OF_KEY_RIGHT && increase3dfractal < 6 && DfractAnimation==false){
             increase3dfractal += 1;
         }
-        else if (key==OF_KEY_LEFT && increase3dfractal > -3){
+        else if (key==OF_KEY_LEFT && increase3dfractal > -3 && DfractAnimation==false){
             increase3dfractal -= 1;
+        }
+    }   break;
+    }
+
+    //Activate animations with space_bar ----------------------------------------
+    switch (mode) {
+    case '1': {
+        // Circle
+        if (key==' ' && circleAnimation == false){
+            circleAnimation = true;
+        }
+        else if (key==' ' && circleAnimation == true){
+            circleAnimation = false;
+        }
+    } break;
+    case '2': {
+        // Tree
+    	if (key==' ' && treeAnimation == false){
+            treeAnimation = true;
+        }
+        else if (key==' ' && treeAnimation == true){
+            treeAnimation = false;
+        }
+    } break;
+    case '3': {
+        // Sierpinski Triangle
+    	if (key==' ' && triangleAnimation == false){
+            triangleAnimation = true;
+        }
+        else if (key==' ' && triangleAnimation == true){
+            triangleAnimation = false;
+        }
+    } break;
+    case '4': {
+        // Barnsley Fern
+        if (key==' ' && barleyAnimation == false){
+            barleyAnimation = true;
+        }
+        else if (key==' ' && barleyAnimation == true){
+            barleyAnimation = false;
+        }
+    }    break;
+    case '5': {
+        // Koch SnowFlake
+        if (key==' ' && snowAnimation == false){
+            snowAnimation = true;
+        }
+        else if (key==' ' && snowAnimation == true){
+            snowAnimation = false;
+        }
+    }   break;
+    case '6': {
+        //3d Fractal
+        if (key==' ' &&  DfractAnimation == false){
+            DfractAnimation = true;
+        }
+        else if (key==' ' && DfractAnimation == true){
+            DfractAnimation = false;
         }
     }   break;
     }

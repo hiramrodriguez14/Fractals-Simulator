@@ -13,15 +13,27 @@ class ofApp : public ofBaseApp {
   private:
     char mode = '1';
     string s = "Fractals";
-    bool extra = false;
     float increasecircle = 0;
     float increasetree = 0;
     float increasetriangle = 0;
     float increasebarleyfern = 0;
     float increasesnowflake = 0;
     float increase3dfractal = 0;
-  
-     std::vector<Fractal*> fractals;
+
+    int ticks = 0;
+  	
+    bool increase = true; //Used for the animation only
+    bool extra = false;
+    bool circleAnimation = false;
+    bool treeAnimation = false;
+    bool triangleAnimation = false;
+    bool barleyAnimation = false;
+    bool snowAnimation = false;
+    bool DfractAnimation = false;
+
+    std::vector<Fractal*> fractals;
+
+
   public:
     void setup();
     void update();

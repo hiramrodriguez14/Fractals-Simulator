@@ -5,6 +5,7 @@
 // Interface for Fractal
 class Fractal {
 public:
+    
     virtual void draw(float x, float y, int n,float size,float r, float length) = 0; 
     virtual string getName() const = 0; 
     virtual int getLevel() const = 0; 

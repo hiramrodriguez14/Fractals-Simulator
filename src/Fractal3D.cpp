@@ -28,22 +28,25 @@ void Fractal3D::draw(map<string, float> drawConfig) {
         };
         vec3 peak = {0.0, 0.0, 1.41421 * scale / 2};
         reset();
-        mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+        mesh.setMode(OF_PRIMITIVE_TRIANGLES);if (drawConfig["n"] == 0) {
+        return;
+    }
         generateTetrahedron(base, peak, drawConfig["n"]);
         mesh.setupIndicesAuto();
         currentMeshHasDetail = extrudeAllFaces;
+        
     }
 
     cam->begin();
     ofEnableDepthTest();
-
+       
+    mesh.drawFaces();
     mesh.drawFaces();
     ofSetColor(0);
     mesh.drawWireframe();
     ofSetColor(255);
     ofNoFill();
     ofDrawPlane(0, 0, 0.3, 800, 800);
-    ofSetColor(255);
     ofDisableDepthTest();
     cam->end();
 
@@ -51,6 +54,7 @@ void Fractal3D::draw(map<string, float> drawConfig) {
 
 void Fractal3D::generateTetrahedron(vector<vec3>& base, vec3 peak, int n) {
     if (!n) return;
+    
     // The base of our tetrahedron will be the midpoints of the base of its parent
     vec3 midpointA = (base[0] + base[1]) / 2;
     vec3 midpointB = (base[0] + base[2]) / 2;
@@ -110,7 +114,10 @@ void Fractal3D::generateTetrahedron(vector<vec3>& base, vec3 peak, int n) {
     vector<vec3> base6 = {base[2], midpointB, midpointC};
     vec3 peak6 = baseNormal * height / 2 + centerOf(base6);
 
+    
+
     // Now we add the faces that are not the base of the new tetrahedron to the mesh. We don't add the base because the parent's face is already being drawn.
+    
     mesh.addVertex(midpointA);
     mesh.addVertex(midpointB);
     mesh.addVertex(peak);
@@ -130,6 +137,29 @@ void Fractal3D::generateTetrahedron(vector<vec3>& base, vec3 peak, int n) {
         generateTetrahedron(base4, peak4, n - 1);
         generateTetrahedron(base5, peak5, n - 1);
         generateTetrahedron(base6, peak6, n - 1);
+        
+    ofColor color;
+    if (n == 1) {
+        color = ofColor::limeGreen;
+    } else if (n == 2) {
+        color = ofColor::blue;
+    } else if (n == 3) {
+        color = ofColor::purple;
+    } else if (n == 4) {
+        color = ofColor::darkGreen;
+    } else if (n == 5) {
+        color = ofColor::purple;
+    } else if (n == 6) {
+        color = ofColor::magenta;
+    } else if (n == 7) {
+        color = ofColor::darkMagenta;
+    } else if (n == 8) {
+        color = ofColor::indianRed;
+    } else if (n == 9) {
+        color = ofColor::red;
+    }
+    ofSetColor(color);
+
     }
 }
 

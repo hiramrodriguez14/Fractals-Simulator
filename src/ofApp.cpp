@@ -13,11 +13,12 @@ void ofApp::setup() {
     Tree* tree = new Tree("Tree", 0);
     Fern* fern = new Fern("Bernsley Fern", 0);
     Circle* circle = new Circle("Circle", 0);
-
+    Mandelbrot* mandelbrot = new Mandelbrot("Mandelbrot",0);
     fractals.push_back(circle);
     fractals.push_back(tree);
     fractals.push_back(sierpinski);
     fractals.push_back(fern);
+    fractals.push_back(mandelbrot);
 }
 
 //--------------------------------------------------------------
@@ -58,7 +59,7 @@ void ofApp::draw() {
         float length2 = 0.31 * ofGetHeight()/2.7;
         float length3 = 0.31 * ofGetHeight()/2.7;
         fractals[1]->draw(ofGetWidth() / 2, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length);
-        fractals[1]->draw(ofGetWidth()-1195, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length2);
+        fractals[1]->draw(ofGetWidth()-1260, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length2);
         fractals[1]->draw(ofGetWidth()-180, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length3);
 
     } break;
@@ -85,13 +86,19 @@ void ofApp::draw() {
         s = "3d Fractal";
         Fractal3D(&cam).draw(map<string, float> {{"n", 3+increase3dfractal}, {"scale", 100}});
     }   break;
+      case '7': {
+        //MAndelbrot
+        s = "Mandelbrot";
+        float size2 = 0.88 * ofGetHeight();
+        fractals[4]->draw((ofGetWidth() - size2), ofGetHeight(), 50, size2, 0, 0);
+    }   break;
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     //Switch Fractals logic
-    if (key >= '1' && key <= '6'){
+    if (key >= '1' && key <= '7'){
         mode = key;
     }
 

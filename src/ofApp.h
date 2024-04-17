@@ -8,7 +8,7 @@
 #include "sierpinskiTriangle.h"
 #include "BarnsleyFern.h"
 #include "ofMain.h"
-
+#include "Mandelbrot2D.h"
 class ofApp : public ofBaseApp {
   private:
     char mode = '1';

@@ -134,7 +134,7 @@ void ofApp::update() {
             if (dragonAnimation == true && ticks == 60) {
                 if (increase == true) {
                     increaseDragonfractal += 1;
-                    if (increaseDragonfractal == 5) {
+                    if (increaseDragonfractal == 6) {
                         increase = false;
                     }
                 } else {

@@ -31,7 +31,7 @@ class ofApp : public ofBaseApp {
     bool barleyAnimation = false;
     bool snowAnimation = false;
     bool DfractAnimation = false;
-    bool dragonAnimation=false;
+    bool dragonAnimation = false;
 
      std::vector<Fractal*> fractals;
   public:

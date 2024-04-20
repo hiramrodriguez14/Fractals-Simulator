@@ -3,21 +3,42 @@
 
 void Dragon::draw(float x, float y, int n,float size,float r, float length) {
     //r=angle
-    if (n <=0) {
+    ofColor color;
+    if (n == 0) {
         // Base case: draw a line segment
-       float endX = x+length*cos(r);
-       float endY= y+length*sin(r);
-        ofSetColor(255); // Set color
+        float endX = x+length*cos(r);
+        float endY= y+length*sin(r);
+
         ofDrawLine(x, y, endX, endY);
         return;
-    } 
- 
+    }
+    if(n==1){
+        color = ofColor::cyan;
+    }
+    if(n==2){
+        color = ofColor::lightBlue;
+    }
+    if(n==3){
+        color = ofColor::gold;
+    }
+    if(n==4){
+        color = ofColor::blue;
+    }
+    if(n>=5 && n<=10){
+        color = ofColor::purple;
+    }
+    if(n>=11 && n<=15){
+        color = ofColor::green;
+    }
+    
    
     draw(x,y,n-1,0,r+pi/4,length*scalingFactor);
     x+=length*scalingFactor*cos(r+pi/4);
-     y+=length*scalingFactor*sin(r+pi/4);
-     draw(x,y,n-1,0,r+pi/4,length*scalingFactor);
- 
+    y+=length*scalingFactor*sin(r+pi/4);
+    draw(x,y,n-1,0,r+pi/4,length*scalingFactor);
+
+    ofNoFill();
+    ofSetColor(color);
     }
        
 

@@ -284,7 +284,7 @@ void ofApp::draw() {
     }   break;
       case '7': {
         //Dragon
-         if(dragonAnimation==true){
+        if(dragonAnimation==true){
             dataText.drawString("Arrows OFF",1025,150);
             dataText.drawString("Animation ON",1025,120);
         }
@@ -316,7 +316,7 @@ void ofApp::keyPressed(int key) {
         }
     }
 
-    //Increase and decrease recursions logic ( shift + < or shift + > ) ------------------------------
+    //Increase and decrease recursions logic ------------------------------------------------
     switch (mode) {
     case '1': {
         // Circle
@@ -365,23 +365,24 @@ void ofApp::keyPressed(int key) {
     }   break;
     case '6': {
         //3d Fractal
-        if (key==OF_KEY_RIGHT && increase3dfractal < 7){
+        if (key==OF_KEY_RIGHT && increase3dfractal < 6 && DfractAnimation==false){
             increase3dfractal += 1;
         }
-        else if (key==OF_KEY_LEFT && increase3dfractal > -9){
+        else if (key==OF_KEY_LEFT && increase3dfractal > -3 && DfractAnimation==false){
             increase3dfractal -= 1;
         }
     }   break;
      case '7': {
         //Dragon Fractal
-        if (key==OF_KEY_RIGHT && increaseDragonfractal < 6){
+        if (key==OF_KEY_RIGHT && increaseDragonfractal < 6 && dragonAnimation==false){
             increaseDragonfractal += 1;
         }
-        else if (key==OF_KEY_LEFT && increaseDragonfractal > -10){
+        else if (key==OF_KEY_LEFT && increaseDragonfractal > -9 && dragonAnimation==false){
             increaseDragonfractal -= 1;
         }  
     }break;
         }
+
          //Activate animations with space_bar ----------------------------------------
     switch (mode) {
     case '1': {
@@ -439,8 +440,7 @@ void ofApp::keyPressed(int key) {
         }
     }   break;
     case '7':{
-        //Dragon
-         //3d Fractal
+        //Dragon Fractal
         if (key==' ' &&  dragonAnimation == false){
             dragonAnimation = true;
         }
@@ -448,7 +448,6 @@ void ofApp::keyPressed(int key) {
             dragonAnimation = false;
         }
     }break;
-
     }
 
 }

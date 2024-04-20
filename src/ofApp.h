@@ -20,6 +20,19 @@ class ofApp : public ofBaseApp {
     float increasesnowflake = 0;
     float increase3dfractal = 0;
     float increaseDragonfractal=0;
+
+    int ticks = 0;
+
+    bool increase = true; //Used for the animation only
+    bool extra = false;
+    bool circleAnimation = false;
+    bool treeAnimation = false;
+    bool triangleAnimation = false;
+    bool barleyAnimation = false;
+    bool snowAnimation = false;
+    bool DfractAnimation = false;
+    bool dragonAnimation=false;
+
      std::vector<Fractal*> fractals;
   public:
     void setup();

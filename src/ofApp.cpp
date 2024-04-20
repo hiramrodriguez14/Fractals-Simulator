@@ -13,12 +13,12 @@ void ofApp::setup() {
     Tree* tree = new Tree("Tree", 0);
     Fern* fern = new Fern("Bernsley Fern", 0);
     Circle* circle = new Circle("Circle", 0);
-    Mandelbrot* mandelbrot = new Mandelbrot("Mandelbrot",0);
+    Dragon* dragon = new Dragon("Dragon",0);
     fractals.push_back(circle);
     fractals.push_back(tree);
     fractals.push_back(sierpinski);
     fractals.push_back(fern);
-    fractals.push_back(mandelbrot);
+    fractals.push_back(dragon);
 }
 
 //--------------------------------------------------------------
@@ -158,20 +158,16 @@ void ofApp::draw() {
 
     //When 'd' is pressed, extra information is drawn 
     if (extra == true){
-        dataText.drawString("1.Circle level: "+to_string(3 + increasecircle),25,90);
-        dataText.drawString("2.Tree level: "+to_string(10 + increasetree),25,120);
-        dataText.drawString("3.Triangle level: "+to_string(7 + increasetriangle),25,150);
-        dataText.drawString("4.Barnsley level: "+to_string(10 + increasebarleyfern),25,180);
-        dataText.drawString("5.SnowFlake level: "+to_string(5 + increasesnowflake),25,210);
-        dataText.drawString("6.3d Fractal level: "+to_string(3 + increase3dfractal),25,240);
-
-        //if more fractals are added just write the name inside the string, write n plus its increase inside the to_string, and uncomment
-        //dataText.drawString("7.  "+to_string(),25,270);
-        //dataText.drawString("8.  "+to_string(),25,300);
-
-        dataText.drawString("Aditional Info: ",25,330);
-        dataText.drawString("Ticks per second: "+to_string(ticks),25,360);
-    }
+        dataText.drawString("Press 'd' to hide fractals info!",25,90);
+        dataText.drawString("1.Circle level: "+to_string(3 + increasecircle),25,120);
+        dataText.drawString("2.Tree level: "+to_string(10 + increasetree),25,150);
+        dataText.drawString("3.Triangle level: "+to_string(7 + increasetriangle),25,180);
+        dataText.drawString("4.Barnsley level: "+to_string(10 + increasebarleyfern),25,210);
+        dataText.drawString("5.SnowFlake level: "+to_string(5 + increasesnowflake),25,240);
+        dataText.drawString("6.3d Fractal level: "+to_string(3 + increase3dfractal),25,270);
+        dataText.drawString("7.Dragon Fractal level: "+to_string(9 + increaseDragonfractal),25,300);
+    }else{ dataText.drawString("Press 'd' to see fractals info!",25,90);}
+    
 
     
     switch (mode) {
@@ -271,10 +267,10 @@ void ofApp::draw() {
         Fractal3D(&cam).draw(map<string, float> {{"n", 3+increase3dfractal}, {"scale", 100}});
     }   break;
       case '7': {
-        //MAndelbrot
-        s = "Mandelbrot";
-        float size2 = 0.88 * ofGetHeight();
-        fractals[4]->draw((ofGetWidth() - size2), ofGetHeight(), 50, size2, 0, 0);
+        //Dragon
+        s = "Dragon";
+        fractals[4]->draw(ofGetWidth()/2, ofGetHeight()/2-150,9+increaseDragonfractal,0, 0, 325);
+
     }   break;
     }
 }
@@ -345,72 +341,23 @@ void ofApp::keyPressed(int key) {
     }   break;
     case '6': {
         //3d Fractal
-        if (key==OF_KEY_RIGHT && increase3dfractal < 6 && DfractAnimation==false){
+        if (key==OF_KEY_RIGHT && increase3dfractal < 7){
             increase3dfractal += 1;
         }
-        else if (key==OF_KEY_LEFT && increase3dfractal > -3 && DfractAnimation==false){
+        else if (key==OF_KEY_LEFT && increase3dfractal > -9){
             increase3dfractal -= 1;
         }
     }   break;
-    }
-
-    //Activate animations with space_bar ----------------------------------------
-    switch (mode) {
-    case '1': {
-        // Circle
-        if (key==' ' && circleAnimation == false){
-            circleAnimation = true;
+     case '7': {
+        //Dragon Fractal
+        if (key==OF_KEY_RIGHT && increaseDragonfractal < 6){
+            increaseDragonfractal += 1;
         }
-        else if (key==' ' && circleAnimation == true){
-            circleAnimation = false;
+        else if (key==OF_KEY_LEFT && increaseDragonfractal > -10){
+            increaseDragonfractal -= 1;
+        }  
+    }break;
         }
-    } break;
-    case '2': {
-        // Tree
-    	if (key==' ' && treeAnimation == false){
-            treeAnimation = true;
-        }
-        else if (key==' ' && treeAnimation == true){
-            treeAnimation = false;
-        }
-    } break;
-    case '3': {
-        // Sierpinski Triangle
-    	if (key==' ' && triangleAnimation == false){
-            triangleAnimation = true;
-        }
-        else if (key==' ' && triangleAnimation == true){
-            triangleAnimation = false;
-        }
-    } break;
-    case '4': {
-        // Barnsley Fern
-        if (key==' ' && barleyAnimation == false){
-            barleyAnimation = true;
-        }
-        else if (key==' ' && barleyAnimation == true){
-            barleyAnimation = false;
-        }
-    }    break;
-    case '5': {
-        // Koch SnowFlake
-        if (key==' ' && snowAnimation == false){
-            snowAnimation = true;
-        }
-        else if (key==' ' && snowAnimation == true){
-            snowAnimation = false;
-        }
-    }   break;
-    case '6': {
-        //3d Fractal
-        if (key==' ' &&  DfractAnimation == false){
-            DfractAnimation = true;
-        }
-        else if (key==' ' && DfractAnimation == true){
-            DfractAnimation = false;
-        }
-    }   break;
-    }
 }
 
 //--------------------------------------------------------------

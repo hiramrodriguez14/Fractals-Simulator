@@ -8,7 +8,7 @@
 #include "sierpinskiTriangle.h"
 #include "BarnsleyFern.h"
 #include "ofMain.h"
-#include "Mandelbrot2D.h"
+#include "Dragon.h"
 class ofApp : public ofBaseApp {
   private:
     char mode = '1';
@@ -20,7 +20,7 @@ class ofApp : public ofBaseApp {
     float increasebarleyfern = 0;
     float increasesnowflake = 0;
     float increase3dfractal = 0;
-  
+    float increaseDragonfractal=0;
      std::vector<Fractal*> fractals;
   public:
     void setup();

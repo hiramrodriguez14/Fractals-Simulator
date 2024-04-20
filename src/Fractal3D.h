@@ -6,6 +6,7 @@ using namespace glm;
 
 class Fractal3D {
     private:
+    ofColor currentColor;
         ofMesh mesh;
         ofEasyCam* cam;
         bool currentMeshHasDetail = false;

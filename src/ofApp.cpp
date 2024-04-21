@@ -33,14 +33,18 @@ void ofApp::update() {
             // Circle
             if (circleAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    increasecircle += 1;
                     if (increasecircle == 2) {
                         increase = false;
                     }
+                    else if(increase == true){
+                        increasecircle += 1;
+                    }
                 } else {
-                    increasecircle -= 1;
                     if (increasecircle == -2) {
                         increase = true;
+                    }
+                    else if(increase == false){
+                        increasecircle -= 1;
                     }
                 }
                 ticks = 0;
@@ -50,14 +54,18 @@ void ofApp::update() {
             // Tree
             if (treeAnimation == true && ticks == 50) {
                 if (increase == true) {
-                    increasetree += 1;
                     if (increasetree == 5) {
                         increase = false;
                     }
+                    else if (increase == true) {
+                        increasetree += 1;
+                    }
                 } else {
-                    increasetree -= 1;
                     if (increasetree == -9) {
                         increase = true;
+                    }
+                    else if(increase == false){
+                        increasetree -= 1;
                     }
                 }
                 ticks = 0;
@@ -67,14 +75,18 @@ void ofApp::update() {
             // Sierpinski Triangle
             if (triangleAnimation == true && ticks == 50) {
                 if (increase == true) {
-                    increasetriangle += 1;
                     if (increasetriangle == 3) {
                         increase = false;
                     }
+                    else if(increase == true){
+                        increasetriangle += 1;
+                    }
                 } else {
-                    increasetriangle -= 1;
                     if (increasetriangle == -6) {
                         increase = true;
+                    }
+                    else if(increase == false){
+                        increasetriangle -= 1;
                     }
                 }
                 ticks = 0;
@@ -84,14 +96,18 @@ void ofApp::update() {
             // Barnsley Fern
             if (barleyAnimation == true && ticks == 10) {
                 if (increase == true) {
-                    increasebarleyfern += 1;
                     if (increasebarleyfern == 40) {
                         increase = false;
                     }
+                    else if(increase == true){
+                        increasebarleyfern += 1;
+                    }
                 } else {
-                    increasebarleyfern -= 1;
                     if (increasebarleyfern == -5) {
                         increase = true;
+                    }
+                    else if(increase == false){
+                        increasebarleyfern -= 1;
                     }
                 }
                 ticks = 0;
@@ -101,14 +117,18 @@ void ofApp::update() {
             // Koch SnowFlake
             if (snowAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    increasesnowflake += 1;
                     if (increasesnowflake == 1) {
                         increase = false;
                     }
+                    else if(increase == true){
+                        increasesnowflake += 1;
+                    }
                 } else {
-                    increasesnowflake -= 1;
                     if (increasesnowflake == -4) {
                         increase = true;
+                    }
+                    else if(increase == false){
+                        increasesnowflake -= 1;
                     }
                 }
                 ticks = 0;
@@ -118,14 +138,18 @@ void ofApp::update() {
             // 3d Fractal
             if (DfractAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    increase3dfractal += 1;
                     if (increase3dfractal == 6) {
                         increase = false;
                     }
+                    else if(increase == true){
+                        increase3dfractal += 1;
+                    }
                 } else {
-                    increase3dfractal -= 1;
                     if (increase3dfractal == -3) {
                         increase = true;
+                    }
+                    else if(increase == false){
+                        increase3dfractal -= 1;
                     }
                 }
                 ticks = 0;
@@ -135,36 +159,45 @@ void ofApp::update() {
             // Dragon Fractal
             if (dragonAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    increaseDragonfractal += 1;
                     if (increaseDragonfractal == 6) {
                         increase = false;
                     }
+                    else if(increase == true){
+                        increaseDragonfractal += 1;
+                    }
                 } else {
-                    increaseDragonfractal -= 1;
                     if (increaseDragonfractal == -9) {
                         increase = true;
+                    }
+                    else if(increase == false){
+                        increaseDragonfractal -= 1;
                     }
                 }
                 ticks = 0;
             }
         } break;
-        // case '8': {
-        //     //Mandelbrot
-        //     if (dragonAnimation == true && ticks == 60) {
-        //         if (increase == true) {
-        //             increaseDragonfractal += 1;
-        //             if (increaseDragonfractal == 6) {
-        //                 increase = false;
-        //             }
-        //         } else {
-        //             increaseDragonfractal -= 1;
-        //             if (increaseDragonfractal == -9) {
-        //                 increase = true;
-        //             }
-        //         }
-        //         ticks = 0;
-        //     }
-        // } break;
+        case '8': {
+            // Mandelbrot Fractal
+            if (mandelbrotAnimation == true && ticks == 40) {
+                if (increase == true) {
+                    if (increaseMandelbrotfractal == 0) {
+                        increase = false;
+                    }
+                    else if(increase == true){
+                        increaseMandelbrotfractal += 1;
+                    }
+                } else {
+                    if (increaseMandelbrotfractal == -12) {
+                        increase = true;
+                    }
+                    else if(increase == false){
+                        increaseMandelbrotfractal -= 1;
+                    }
+                }
+                ticks = 0;
+            }
+        } break;
+        
     }
     
     // Reset ticks if it reaches 70
@@ -195,13 +228,13 @@ void ofApp::draw() {
         dataText.drawString("5.SnowFlake level: "+to_string(5 + increasesnowflake),25,240);
         dataText.drawString("6.3d Fractal level: "+to_string(3 + increase3dfractal),25,270);
         dataText.drawString("7.Dragon Fractal level: "+to_string(9 + increaseDragonfractal),25,300);
-           //if more fractals are added just write the name inside the string, write n plus its increase inside the to_string, and uncomment
-      
-        dataText.drawString("8.Mandelbrot level:  "+to_string(12+increaseMandelbrotfractal),25,330);
-
+        dataText.drawString("8.Mandelbrot level:  "+to_string(15+increaseMandelbrotfractal),25,330);
         dataText.drawString("Aditional Info: ",25,360);
         dataText.drawString("Ticks per second: "+to_string(ticks),25,390);
-    }else{ dataText.drawString("Press 'd' to see fractals info!",25,90);}
+
+    }else{
+        dataText.drawString("Press 'd' to see fractals info!",25,90);
+    }
     
 
     
@@ -335,11 +368,11 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     //Switch Fractals logic
-    if (key >= '1' && key <= '9'){
+    if (key >= '1' && key <= '8'){
         mode = key;
     }
 
-    //Extra info about fractals logic
+    //Extra info about fractals logic --------------------------------------------------
     if (tolower(key) == 'd'){
         if (extra == true){
             extra = false;
@@ -416,10 +449,10 @@ void ofApp::keyPressed(int key) {
     }break;
      case '8': {
         //Mandelbrot
-        if (key==OF_KEY_RIGHT && increaseMandelbrotfractal < 10 && dragonAnimation==false){
+        if (key==OF_KEY_RIGHT && increaseMandelbrotfractal < 0 && mandelbrotAnimation==false){
             increaseMandelbrotfractal += 1;
         }
-        else if (key==OF_KEY_LEFT && increaseMandelbrotfractal > -12 && dragonAnimation==false){
+        else if (key==OF_KEY_LEFT && increaseMandelbrotfractal > -12 && mandelbrotAnimation==false){
             increaseMandelbrotfractal -= 1;
         }  
     }break;
@@ -488,6 +521,15 @@ void ofApp::keyPressed(int key) {
         }
         else if (key==' ' && dragonAnimation == true){
             dragonAnimation = false;
+        }
+    }break;
+    case '8':{
+        //MandelBrot Fractal
+        if (key==' ' &&  mandelbrotAnimation == false){
+            mandelbrotAnimation = true;
+        }
+        else if (key==' ' && mandelbrotAnimation == true){
+            mandelbrotAnimation = false;
         }
     }break;
     }

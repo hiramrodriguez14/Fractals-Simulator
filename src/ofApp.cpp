@@ -14,11 +14,13 @@ void ofApp::setup() {
     Fern* fern = new Fern("Bernsley Fern", 0);
     Circle* circle = new Circle("Circle", 0);
     Dragon* dragon = new Dragon("Dragon",0);
+    Mandelbrot* mandelbrot = new Mandelbrot("Mandelbrot",0);
     fractals.push_back(circle);
     fractals.push_back(tree);
     fractals.push_back(sierpinski);
     fractals.push_back(fern);
     fractals.push_back(dragon);
+    fractals.push_back(mandelbrot);
 }
 
 //--------------------------------------------------------------
@@ -146,6 +148,23 @@ void ofApp::update() {
                 ticks = 0;
             }
         } break;
+        // case '8': {
+        //     //Mandelbrot
+        //     if (dragonAnimation == true && ticks == 60) {
+        //         if (increase == true) {
+        //             increaseDragonfractal += 1;
+        //             if (increaseDragonfractal == 6) {
+        //                 increase = false;
+        //             }
+        //         } else {
+        //             increaseDragonfractal -= 1;
+        //             if (increaseDragonfractal == -9) {
+        //                 increase = true;
+        //             }
+        //         }
+        //         ticks = 0;
+        //     }
+        // } break;
     }
     
     // Reset ticks if it reaches 70
@@ -178,10 +197,10 @@ void ofApp::draw() {
         dataText.drawString("7.Dragon Fractal level: "+to_string(9 + increaseDragonfractal),25,300);
            //if more fractals are added just write the name inside the string, write n plus its increase inside the to_string, and uncomment
       
-        //dataText.drawString("8.  "+to_string(),25,330);
+        dataText.drawString("8.Mandelbrot level:  "+to_string(12+increaseMandelbrotfractal),25,330);
 
-        dataText.drawString("Aditional Info: ",25,330);
-        dataText.drawString("Ticks per second: "+to_string(ticks),25,360);
+        dataText.drawString("Aditional Info: ",25,360);
+        dataText.drawString("Ticks per second: "+to_string(ticks),25,390);
     }else{ dataText.drawString("Press 'd' to see fractals info!",25,90);}
     
 
@@ -292,8 +311,22 @@ void ofApp::draw() {
             dataText.drawString("Arrows ON",1025,150);
             dataText.drawString("Animation OFF",1025,120);
         }
-        s = "Dragon";
+        s = "Dragon Curve";
         fractals[4]->draw(ofGetWidth()/2, ofGetHeight()/2-150,9+increaseDragonfractal,0, 0, 325);
+
+    }   break;
+     case '8': {
+        //Mandelbrot
+        if(mandelbrotAnimation==true){
+            dataText.drawString("Arrows OFF",1025,150);
+            dataText.drawString("Animation ON",1025,120);
+        }
+        else{
+            dataText.drawString("Arrows ON",1025,150);
+            dataText.drawString("Animation OFF",1025,120);
+        }
+        s = "Four Leaf Clover Mandelbrot";
+        fractals[5]->draw(0, 0,15+increaseMandelbrotfractal,ofGetWidth()*0.6+300,ofGetHeight()*-0.6+1200,0);
 
     }   break;
     }
@@ -302,7 +335,7 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     //Switch Fractals logic
-    if (key >= '1' && key <= '7'){
+    if (key >= '1' && key <= '9'){
         mode = key;
     }
 
@@ -379,6 +412,15 @@ void ofApp::keyPressed(int key) {
         }
         else if (key==OF_KEY_LEFT && increaseDragonfractal > -9 && dragonAnimation==false){
             increaseDragonfractal -= 1;
+        }  
+    }break;
+     case '8': {
+        //Mandelbrot
+        if (key==OF_KEY_RIGHT && increaseMandelbrotfractal < 10 && dragonAnimation==false){
+            increaseMandelbrotfractal += 1;
+        }
+        else if (key==OF_KEY_LEFT && increaseMandelbrotfractal > -12 && dragonAnimation==false){
+            increaseMandelbrotfractal -= 1;
         }  
     }break;
         }

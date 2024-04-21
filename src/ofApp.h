@@ -9,6 +9,8 @@
 #include "BarnsleyFern.h"
 #include "ofMain.h"
 #include "Dragon.h"
+#include "Mandelbrot.h"
+
 class ofApp : public ofBaseApp {
   private:
     char mode = '1';
@@ -20,6 +22,7 @@ class ofApp : public ofBaseApp {
     float increasesnowflake = 0;
     float increase3dfractal = 0;
     float increaseDragonfractal=0;
+    float increaseMandelbrotfractal=0;
 
     int ticks = 0;
 
@@ -32,6 +35,7 @@ class ofApp : public ofBaseApp {
     bool snowAnimation = false;
     bool DfractAnimation = false;
     bool dragonAnimation = false;
+    bool mandelbrotAnimation = false;
 
      std::vector<Fractal*> fractals;
   public:

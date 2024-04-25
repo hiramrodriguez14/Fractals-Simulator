@@ -1,7 +1,15 @@
 #include "Tree.h"
 
+void Tree::draw(){
+        float length = 0.31 * ofGetHeight();
+        float length2 = 0.31 * ofGetHeight()/2.7;
+        float length3 = 0.31 * ofGetHeight()/2.7;
+        draw(ofGetWidth() / 2, ofGetHeight() - 20, this->getLevel(), 1.5 * PI, length);
+        draw(ofGetWidth()-1260, ofGetHeight() - 20, this->getLevel(), 1.5 * PI, length2);
+        draw(ofGetWidth()-180, ofGetHeight() - 20, this->getLevel(), 1.5 * PI, length3);
 
-void Tree::draw(float x, float y, int n,float size,float r, float length) {
+}
+void Tree::draw(float x, float y, int n,float r,float length) {
   if (n == 0) return;
   if (n>=1 && n<=5){
     ofNoFill();
@@ -20,8 +28,8 @@ void Tree::draw(float x, float y, int n,float size,float r, float length) {
 
     ofDrawLine(x, y, x2, y2);
 
-    draw(x2, y2, n - 1,0,r + 0.2 * PI, 0.7 * length);
-    draw(x2, y2, n - 1,0, r - 0.2 * PI, 0.7 * length);
+    draw(x2, y2, n - 1,r + 0.2 * PI, 0.7 * length);
+    draw(x2, y2, n - 1, r - 0.2 * PI, 0.7 * length);
 
 
 }

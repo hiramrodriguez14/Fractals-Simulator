@@ -10,7 +10,7 @@ protected:
 public:
     AbstractFractal() : level(0) {} // Default constructor
     AbstractFractal(const string& name, int level) : name(name), level(level) {} // Constructor to initialize name and level
-
+    void draw()=0;
     // Getter methods
     virtual std::string getName() const { return name; }
     virtual int getLevel() const { return level; }

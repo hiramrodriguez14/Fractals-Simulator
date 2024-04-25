@@ -8,8 +8,8 @@ class Mandelbrot : public AbstractFractal {
 public:
     Mandelbrot(const std::string& name, int level) : AbstractFractal(name, level) {}
 
-    void draw(float x, float y, int n,float size,float r, float length)override;
-
+    void draw(float x, float y, int n,float x2,float y2);
+    void draw()override;
 private:
 
  

@@ -1,7 +1,11 @@
 #include "Dragon.h"
 #include "ofMath.h"
 
-void Dragon::draw(float x, float y, int n,float size,float r, float length) {
+void Dragon::draw(){
+
+    draw(ofGetWidth()/2, ofGetHeight()/2-150,this->getLevel(), 0, 325);
+}
+void Dragon::draw(float x, float y, int n,float r, float length) {
     //r=angle
     ofColor color;
     if (n == 0) {
@@ -32,10 +36,10 @@ void Dragon::draw(float x, float y, int n,float size,float r, float length) {
     }
     
    
-    draw(x,y,n-1,0,r+pi/4,length*scalingFactor);
+    draw(x,y,n-1,r+pi/4,length*scalingFactor);
     x+=length*scalingFactor*cos(r+pi/4);
     y+=length*scalingFactor*sin(r+pi/4);
-    draw(x,y,n-1,0,r+pi/4,length*scalingFactor);
+    draw(x,y,n-1,r+pi/4,length*scalingFactor);
 
     ofNoFill();
     ofSetColor(color);

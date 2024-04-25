@@ -1,9 +1,14 @@
 #include "Mandelbrot.h"
 
-void Mandelbrot::draw(float x, float y, int n,float size,float r, float length) {
+void Mandelbrot::draw(){
+
+    draw(0, 0,this->getLevel(),ofGetWidth()*0.6+300,ofGetHeight()*-0.6+1200);
+
+}
+void Mandelbrot::draw(float x, float y, int n,float x2,float y2) {
     ofColor color;
     if(n==3){
-        color = ofColor::green;
+        color = ofColor::gold;
     }
     if(n==4){
         color = ofColor::blue;
@@ -21,16 +26,16 @@ void Mandelbrot::draw(float x, float y, int n,float size,float r, float length) 
         color = ofColor::silver;
     }
     if(n>=13 && n<=15){
-        color = ofColor::gold;
+        color = ofColor::green;
     }
 
 
-    double dx = (xMax - xMin) / size; 
-    double dy = (yMax - yMin) / r;    
+    double dx = (xMax - xMin) /x2; 
+    double dy = (yMax - yMin) / y2;    
     
     // Loop atraves de cada píxel 
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < r; j++) {
+    for (int i = 0; i < x2; i++) {
+        for (int j = 0; j < y2; j++) {
          
             double cx = xMin + (x + i) * dx;
             double cy = yMin + (y + j) * dy;
@@ -49,12 +54,12 @@ void Mandelbrot::draw(float x, float y, int n,float size,float r, float length) 
 }
 
 int Mandelbrot::calculateMandelbrot(double cx, double cy,int iteration,int n) {
-    // Base case: escape condition is met or maximum iterations reached
+    // Base case: recursion finishes if condition is met or maximum iterations reached
     if (iteration >= n || (cx * cx + cy * cy) >= 4) {
         return iteration;
     }
 
-    // Perform Mandelbrot iteration
+   
     double x = cx * cx - cy * cy + cx;
     double y = 2 * cx * cy + cy;
 

@@ -15,14 +15,7 @@ class ofApp : public ofBaseApp {
   private:
     char mode = '1';
     string s = "Fractals";
-    float increasecircle = 0;
-    float increasetree = 0;
-    float increasetriangle = 0;
-    float increasebarleyfern = 0;
-    float increasesnowflake = 0;
-    float increase3dfractal = 0;
-    float increaseDragonfractal=0;
-    float increaseMandelbrotfractal=0;
+  
 
     int ticks = 0;
 

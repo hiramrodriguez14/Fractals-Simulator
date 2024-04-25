@@ -1,9 +1,7 @@
 #include "Fractal3d.h"
 
 
-Fractal3D::Fractal3D(ofEasyCam* cam) : cam(cam){
 
-}
 
 Fractal3D::~Fractal3D() {
     mesh.clear();
@@ -17,7 +15,10 @@ vec3 Fractal3D::centerOf(vector<vec3>& points) {
     result /= points.size();
     return result;
 }
-
+ 
+void Fractal3D::draw(){
+     Fractal3D::draw(map<string, float> {{"n", this->getLevel()}, {"scale", 100}});
+}
 void Fractal3D::draw(map<string, float> drawConfig) {
     if (!mesh.hasVertices() || currentMeshHasDetail != extrudeAllFaces) {
         float scale = drawConfig["scale"];

@@ -6,7 +6,8 @@ class Circle: public AbstractFractal {
       float angle = 0;
 public:
     Circle(const std::string& name, int level) : AbstractFractal(name, level) {} // Constructor to initialize name and level
-    void draw(float x, float y, int n,float size,float r, float length)override;
+    void draw(float x, float y, float r, int n);
+    void draw()override;
   
     
 };

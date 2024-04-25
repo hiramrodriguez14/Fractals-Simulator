@@ -1,8 +1,11 @@
 #include "Circle.h"
 
 
-
-void Circle::draw(float x, float y, int n,float size,float r, float length) {
+void Circle::draw(){
+    float r = 0.31 * ofGetHeight();
+    draw(ofGetWidth() / 2, ofGetHeight() / 2,r,this->getLevel());
+}
+void Circle::draw(float x, float y, float r, int n) {
    angle += 0.000001;
    ofColor color;
    if (n == 0) return;
@@ -35,12 +38,12 @@ void Circle::draw(float x, float y, int n,float size,float r, float length) {
     double angle4 = 2 * PI / 3 + angle;
     double angle5 = 4 * PI / 3 + angle;
     double angle6 = 5 * PI / 3 + angle;
-    draw(x + r * cos(angle1), y + r * sin(angle1),n - 1,0, delta,0);
-    draw(x + r * cos(angle2), y + r * sin(angle2),n - 1,0, delta,0);
-    draw(x + r * cos(angle3), y + r * sin(angle3),n - 1,0, delta,0);
-    draw(x + r * cos(angle4), y + r * sin(angle4),n - 1,0, delta,0);
-    draw(x + r * cos(angle5), y + r * sin(angle5),n - 1,0, delta,0);
-    draw(x + r * cos(angle6), y + r * sin(angle6),n - 1,0, delta,0);
+    draw(x + r * cos(angle1), y + r * sin(angle1), delta,n - 1);
+    draw(x + r * cos(angle2), y + r * sin(angle2), delta,n - 1);
+    draw(x + r * cos(angle3), y + r * sin(angle3), delta,n - 1);
+    draw(x + r * cos(angle4), y + r * sin(angle4), delta,n - 1);
+    draw(x + r * cos(angle5), y + r * sin(angle5), delta,n - 1);
+    draw(x + r * cos(angle6), y + r * sin(angle6), delta,n - 1);
 
 
 }

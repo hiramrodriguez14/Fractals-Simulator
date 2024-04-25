@@ -5,7 +5,8 @@
 class Tree : public AbstractFractal {
 public:
     Tree(const std::string& name, int level) : AbstractFractal(name, level) {} // Constructor to initialize name and level
-    void draw(float x, float y, int n,float size,float r, float length)override;
+    void draw(float x, float y, int n, float r, float length);
+    void draw()override;
 
 
 };

@@ -1,7 +1,11 @@
 #include "sierpinskiTriangle.h"
 
-
-void SierpinskiTriangle::draw(float x, float y, int n,float size,float r, float length) {
+void SierpinskiTriangle::draw(){
+      float size = 0.88 * ofGetHeight();
+      draw((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size,this->getLevel(), size);
+       
+}
+void SierpinskiTriangle::draw(float x, float y, int n, float size) {
     if (n == 0) {
         return;
     }
@@ -46,17 +50,17 @@ void SierpinskiTriangle::draw(float x, float y, int n,float size,float r, float 
     ofDrawTriangle(a, b, c);
 
     //Draw 1 ------------------------------------------------------------------
-    draw(x, y,n - 1, size / 2,0,0);
+    draw(x, y,n - 1, size / 2);
 
     
 
     //Draw 2 ------------------------------------------------------------------
-    draw((a.x + b.x) / 2, (a.y + b.y) / 2, n - 1, size / 2,0,0);
+    draw((a.x + b.x) / 2, (a.y + b.y) / 2, n - 1, size / 2);
 
     
 
     //Draw 3 ------------------------------------------------------------------
-    draw((a.x + c.x) / 2, (a.y + c.y) / 2, n - 1, size / 2,0,0);
+    draw((a.x + c.x) / 2, (a.y + c.y) / 2, n - 1, size / 2);
 
     ofNoFill();
     ofSetColor(color);

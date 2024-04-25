@@ -9,16 +9,21 @@ void ofApp::setup() {
     text.load("Fonts/fractalFont.otf",40);
     dataText.load("Fonts/fractalFont.otf",15);
 
-    SierpinskiTriangle* sierpinski = new SierpinskiTriangle("Sierpinski", 0);
-    Tree* tree = new Tree("Tree", 0);
-    Fern* fern = new Fern("Bernsley Fern", 0);
-    Circle* circle = new Circle("Circle", 0);
-    Dragon* dragon = new Dragon("Dragon",0);
-    Mandelbrot* mandelbrot = new Mandelbrot("Mandelbrot",0);
+    SierpinskiTriangle* sierpinski = new SierpinskiTriangle("Sierpinski", 10);
+    Tree* tree = new Tree("Tree", 15);
+    Fern* fern = new Fern("Bernsley Fern", 50);
+    Circle* circle = new Circle("Circle", 5);
+    Dragon* dragon = new Dragon("Dragon Curve",15);
+    Mandelbrot* mandelbrot = new Mandelbrot("Four Leaf Clover Mandelbrot",15);
+    SnowFlake* snowflake = new SnowFlake("Snowflake",6);
+    Fractal3D* fractal3d = new Fractal3D("3D Fractal",9,&cam);
+
     fractals.push_back(circle);
     fractals.push_back(tree);
     fractals.push_back(sierpinski);
     fractals.push_back(fern);
+    fractals.push_back(snowflake);
+    fractals.push_back(fractal3d);
     fractals.push_back(dragon);
     fractals.push_back(mandelbrot);
 }
@@ -33,18 +38,18 @@ void ofApp::update() {
             // Circle
             if (circleAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    if (increasecircle == 2) {
+                    if (fractals[0]->getLevel()==5) {
                         increase = false;
                     }
                     else if(increase == true){
-                        increasecircle += 1;
+                          fractals[0]->setLevel(fractals[0]->getLevel()+1);
                     }
                 } else {
-                    if (increasecircle == -2) {
+                    if (fractals[0]->getLevel() == 1) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increasecircle -= 1;
+                          fractals[0]->setLevel(fractals[0]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -54,18 +59,18 @@ void ofApp::update() {
             // Tree
             if (treeAnimation == true && ticks == 50) {
                 if (increase == true) {
-                    if (increasetree == 5) {
+                    if (fractals[1]->getLevel()==15) {
                         increase = false;
                     }
                     else if (increase == true) {
-                        increasetree += 1;
+                          fractals[1]->setLevel(fractals[1]->getLevel()+1);
                     }
                 } else {
-                    if (increasetree == -9) {
+                    if (fractals[1]->getLevel()== 1) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increasetree -= 1;
+                      fractals[1]->setLevel(fractals[1]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -75,18 +80,18 @@ void ofApp::update() {
             // Sierpinski Triangle
             if (triangleAnimation == true && ticks == 50) {
                 if (increase == true) {
-                    if (increasetriangle == 3) {
+                    if (fractals[2]->getLevel() == 10) {
                         increase = false;
                     }
                     else if(increase == true){
-                        increasetriangle += 1;
+                        fractals[2]->setLevel(fractals[2]->getLevel()+1);
                     }
                 } else {
-                    if (increasetriangle == -6) {
+                    if (fractals[2]->getLevel() == 1) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increasetriangle -= 1;
+                      fractals[2]->setLevel(fractals[2]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -96,18 +101,18 @@ void ofApp::update() {
             // Barnsley Fern
             if (barleyAnimation == true && ticks == 10) {
                 if (increase == true) {
-                    if (increasebarleyfern == 40) {
+                    if (fractals[3]->getLevel() == 50) {
                         increase = false;
                     }
                     else if(increase == true){
-                        increasebarleyfern += 1;
+                    fractals[3]->setLevel(fractals[3]->getLevel()+1);
                     }
                 } else {
-                    if (increasebarleyfern == -5) {
+                    if (fractals[3]->getLevel() == 5) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increasebarleyfern -= 1;
+                       fractals[3]->setLevel(fractals[3]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -117,18 +122,18 @@ void ofApp::update() {
             // Koch SnowFlake
             if (snowAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    if (increasesnowflake == 1) {
+                    if (fractals[4]->getLevel() == 6) {
                         increase = false;
                     }
                     else if(increase == true){
-                        increasesnowflake += 1;
+                       fractals[4]->setLevel(fractals[4]->getLevel()+1);
                     }
                 } else {
-                    if (increasesnowflake == -4) {
+                    if (fractals[4]->getLevel() == 1) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increasesnowflake -= 1;
+                       fractals[4]->setLevel(fractals[4]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -138,18 +143,18 @@ void ofApp::update() {
             // 3d Fractal
             if (DfractAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    if (increase3dfractal == 6) {
+                    if (fractals[5]->getLevel() == 9) {
                         increase = false;
                     }
                     else if(increase == true){
-                        increase3dfractal += 1;
+                        fractals[5]->setLevel(fractals[5]->getLevel()+1);
                     }
                 } else {
-                    if (increase3dfractal == -3) {
+                    if (fractals[5]->getLevel() == 0) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increase3dfractal -= 1;
+                      fractals[5]->setLevel(fractals[5]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -159,18 +164,18 @@ void ofApp::update() {
             // Dragon Fractal
             if (dragonAnimation == true && ticks == 60) {
                 if (increase == true) {
-                    if (increaseDragonfractal == 6) {
+                    if (fractals[6]->getLevel() == 15) {
                         increase = false;
                     }
                     else if(increase == true){
-                        increaseDragonfractal += 1;
+                       fractals[6]->setLevel(fractals[6]->getLevel()+1);
                     }
                 } else {
-                    if (increaseDragonfractal == -9) {
+                    if ( fractals[6]->getLevel() == 0) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increaseDragonfractal -= 1;
+                        fractals[6]->setLevel(fractals[6]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -180,18 +185,18 @@ void ofApp::update() {
             // Mandelbrot Fractal
             if (mandelbrotAnimation == true && ticks == 40) {
                 if (increase == true) {
-                    if (increaseMandelbrotfractal == 0) {
+                    if (fractals[7]->getLevel() == 15) {
                         increase = false;
                     }
                     else if(increase == true){
-                        increaseMandelbrotfractal += 1;
+                fractals[7]->setLevel(fractals[7]->getLevel()+1);
                     }
                 } else {
-                    if (increaseMandelbrotfractal == -12) {
+                    if (fractals[7]->getLevel() == 3) {
                         increase = true;
                     }
                     else if(increase == false){
-                        increaseMandelbrotfractal -= 1;
+                       fractals[7]->setLevel(fractals[7]->getLevel()-1);
                     }
                 }
                 ticks = 0;
@@ -221,14 +226,14 @@ void ofApp::draw() {
     //When 'd' is pressed, extra information is drawn 
     if (extra == true){
         dataText.drawString("Press 'd' to hide fractals info!",25,90);
-        dataText.drawString("1.Circle level: "+to_string(3 + increasecircle),25,120);
-        dataText.drawString("2.Tree level: "+to_string(10 + increasetree),25,150);
-        dataText.drawString("3.Triangle level: "+to_string(7 + increasetriangle),25,180);
-        dataText.drawString("4.Barnsley level: "+to_string(10 + increasebarleyfern),25,210);
-        dataText.drawString("5.SnowFlake level: "+to_string(5 + increasesnowflake),25,240);
-        dataText.drawString("6.3d Fractal level: "+to_string(3 + increase3dfractal),25,270);
-        dataText.drawString("7.Dragon Fractal level: "+to_string(9 + increaseDragonfractal),25,300);
-        dataText.drawString("8.Mandelbrot level:  "+to_string(15+increaseMandelbrotfractal),25,330);
+        dataText.drawString("1.Circle level: "+to_string(fractals[0]->getLevel()),25,120);
+        dataText.drawString("2.Tree level: "+to_string(fractals[1]->getLevel()),25,150);
+        dataText.drawString("3.Triangle level: "+to_string(fractals[2]->getLevel()),25,180);
+        dataText.drawString("4.Barnsley level: "+to_string(fractals[3]->getLevel()),25,210);
+        dataText.drawString("5.SnowFlake level: "+to_string(fractals[4]->getLevel()),25,240);
+        dataText.drawString("6.3d Fractal level: "+to_string(fractals[5]->getLevel()),25,270);
+        dataText.drawString("7.Dragon Fractal level: "+to_string(fractals[6]->getLevel()),25,300);
+        dataText.drawString("8.Mandelbrot level:  "+to_string(fractals[7]->getLevel()),25,330);
         dataText.drawString("Aditional Info: ",25,360);
         dataText.drawString("Ticks per second: "+to_string(ticks),25,390);
 
@@ -250,12 +255,11 @@ void ofApp::draw() {
             dataText.drawString("Animation OFF",1025,120);
         }
 
-        s = "Circle";
-        float r = 0.31 * ofGetHeight();
-        fractals[0]->draw(ofGetWidth() / 2, ofGetHeight() / 2, 3+increasecircle, 0, r, 0);
+        s = fractals[0]->getName();
+        fractals[0]->draw();
         
     } break;
-    case '2': {
+    case '2': { 
         // Tree
         if(treeAnimation==true){
            dataText.drawString("Arrows OFF",1025,150);
@@ -266,14 +270,9 @@ void ofApp::draw() {
             dataText.drawString("Animation OFF",1025,120);
         }
 
-        s = "Tree";
-        float length = 0.31 * ofGetHeight();
-        float length2 = 0.31 * ofGetHeight()/2.7;
-        float length3 = 0.31 * ofGetHeight()/2.7;
-        fractals[1]->draw(ofGetWidth() / 2, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length);
-        fractals[1]->draw(ofGetWidth()-1260, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length2);
-        fractals[1]->draw(ofGetWidth()-180, ofGetHeight() - 20, 10+increasetree, 0, 1.5 * PI, length3);
-
+        s = fractals[1]->getName();
+        fractals[1]->draw();
+        
     } break;
     case '3': {
         // Sierpinski Triangle
@@ -286,9 +285,8 @@ void ofApp::draw() {
             dataText.drawString("Animation OFF",1025,120);
         }
 
-        s = "Sierpinski Triangle";
-        float size = 0.88 * ofGetHeight();
-        fractals[2]->draw((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, 7+increasetriangle, size,0,0);
+        s = fractals[2]->getName();
+        fractals[2]->draw();
        
     } break;
     case '4': {
@@ -302,8 +300,8 @@ void ofApp::draw() {
             dataText.drawString("Animation OFF",1025,120);
         }
 
-        s = "Barnsley Fern";
-        fractals[3]->draw(0, 0, (10+increasebarleyfern) * 1000, 0, 0, 0);
+        s = fractals[3]->getName();
+        fractals[3]->draw();
    
     }    break;
     case '5': {
@@ -317,8 +315,8 @@ void ofApp::draw() {
             dataText.drawString("Animation OFF",1025,120);
         }
 
-        s = "Koch SnowFlake";
-        SnowFlake().draw(5+increasesnowflake);
+        s = fractals[4]->getName();
+       fractals[4]->draw();
     }   break;
     case '6': {
         //3d Fractal
@@ -331,8 +329,8 @@ void ofApp::draw() {
             dataText.drawString("Animation OFF",1025,120);
         }
 
-        s = "3d Fractal";
-        Fractal3D(&cam).draw(map<string, float> {{"n", 3+increase3dfractal}, {"scale", 100}});
+        s = fractals[5]->getName();
+             fractals[5]->draw();
     }   break;
       case '7': {
         //Dragon
@@ -344,8 +342,8 @@ void ofApp::draw() {
             dataText.drawString("Arrows ON",1025,150);
             dataText.drawString("Animation OFF",1025,120);
         }
-        s = "Dragon Curve";
-        fractals[4]->draw(ofGetWidth()/2, ofGetHeight()/2-150,9+increaseDragonfractal,0, 0, 325);
+        s = fractals[6]->getName();
+        fractals[6]->draw();
 
     }   break;
      case '8': {
@@ -358,8 +356,8 @@ void ofApp::draw() {
             dataText.drawString("Arrows ON",1025,150);
             dataText.drawString("Animation OFF",1025,120);
         }
-        s = "Four Leaf Clover Mandelbrot";
-        fractals[5]->draw(0, 0,15+increaseMandelbrotfractal,ofGetWidth()*0.6+300,ofGetHeight()*-0.6+1200,0);
+        s = fractals[7]->getName();
+        fractals[7]->draw();
 
     }   break;
     }
@@ -386,74 +384,74 @@ void ofApp::keyPressed(int key) {
     switch (mode) {
     case '1': {
         // Circle
-        if (key==OF_KEY_RIGHT && increasecircle < 2 && circleAnimation==false){
-            increasecircle += 1;
+        if (key==OF_KEY_RIGHT && fractals[0]->getLevel() < 5 && circleAnimation==false){
+            fractals[0]->setLevel(fractals[0]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increasecircle > -2 && circleAnimation==false){
-            increasecircle -= 1;
+        else if (key==OF_KEY_LEFT && fractals[0]->getLevel() > 1 && circleAnimation==false){
+            fractals[0]->setLevel(fractals[0]->getLevel()-1);
         }
     } break;
     case '2': {
         // Tree
-    	if (key==OF_KEY_RIGHT && increasetree < 5 && treeAnimation==false){
-            increasetree += 1;
+    	if (key==OF_KEY_RIGHT && fractals[1]->getLevel() < 15 && treeAnimation==false){
+            fractals[1]->setLevel(fractals[1]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increasetree > -9 && treeAnimation==false){
-            increasetree -= 1;
+        else if (key==OF_KEY_LEFT && fractals[1]->getLevel() > 1 && treeAnimation==false){
+              fractals[1]->setLevel(fractals[1]->getLevel()-1);
         }
     } break;
     case '3': {
         // Sierpinski Triangle
-    	if (key==OF_KEY_RIGHT && increasetriangle < 3 && triangleAnimation==false){
-            increasetriangle += 1;
+    	if (key==OF_KEY_RIGHT && fractals[2]->getLevel() < 10 && triangleAnimation==false){
+             fractals[2]->setLevel(fractals[2]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increasetriangle > -6 && triangleAnimation==false){
-            increasetriangle -= 1;
+        else if (key==OF_KEY_LEFT && fractals[2]->getLevel() > 1 && triangleAnimation==false){
+              fractals[2]->setLevel(fractals[2]->getLevel()-1);
         }
     } break;
     case '4': {
         // Barnsley Fern
-        if (key==OF_KEY_RIGHT && increasebarleyfern < 40 && barleyAnimation==false){
-            increasebarleyfern += 1;
+        if (key==OF_KEY_RIGHT && fractals[3]->getLevel() < 50 && barleyAnimation==false){
+             fractals[3]->setLevel(fractals[3]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increasebarleyfern > -5 && barleyAnimation==false){
-            increasebarleyfern -= 1;
+        else if (key==OF_KEY_LEFT && fractals[3]->getLevel() > 5 && barleyAnimation==false){
+             fractals[3]->setLevel(fractals[3]->getLevel()-1);
         }
     }    break;
     case '5': {
         // Koch SnowFlake
-        if (key==OF_KEY_RIGHT && increasesnowflake < 1 && snowAnimation==false){
-            increasesnowflake += 1;
+        if (key==OF_KEY_RIGHT && fractals[4]->getLevel() < 6 && snowAnimation==false){
+             fractals[4]->setLevel(fractals[4]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increasesnowflake > -4 && snowAnimation==false){
-            increasesnowflake -= 1;
+        else if (key==OF_KEY_LEFT && fractals[4]->getLevel() > 1 && snowAnimation==false){
+             fractals[4]->setLevel(fractals[4]->getLevel()-1);
         }
     }   break;
     case '6': {
         //3d Fractal
-        if (key==OF_KEY_RIGHT && increase3dfractal < 6 && DfractAnimation==false){
-            increase3dfractal += 1;
+        if (key==OF_KEY_RIGHT && fractals[5]->getLevel() < 9 && DfractAnimation==false){
+           fractals[5]->setLevel(fractals[5]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increase3dfractal > -3 && DfractAnimation==false){
-            increase3dfractal -= 1;
+        else if (key==OF_KEY_LEFT && fractals[5]->getLevel() > 0 && DfractAnimation==false){
+             fractals[5]->setLevel(fractals[5]->getLevel()-1);
         }
     }   break;
      case '7': {
         //Dragon Fractal
-        if (key==OF_KEY_RIGHT && increaseDragonfractal < 6 && dragonAnimation==false){
-            increaseDragonfractal += 1;
+        if (key==OF_KEY_RIGHT && fractals[6]->getLevel() < 15 && dragonAnimation==false){
+             fractals[6]->setLevel(fractals[6]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increaseDragonfractal > -9 && dragonAnimation==false){
-            increaseDragonfractal -= 1;
+        else if (key==OF_KEY_LEFT && fractals[6]->getLevel()  > 0 && dragonAnimation==false){
+             fractals[6]->setLevel(fractals[6]->getLevel()-1);
         }  
     }break;
      case '8': {
         //Mandelbrot
-        if (key==OF_KEY_RIGHT && increaseMandelbrotfractal < 0 && mandelbrotAnimation==false){
-            increaseMandelbrotfractal += 1;
+        if (key==OF_KEY_RIGHT &&  fractals[7]->getLevel() < 15 && mandelbrotAnimation==false){
+             fractals[7]->setLevel(fractals[7]->getLevel()+1);
         }
-        else if (key==OF_KEY_LEFT && increaseMandelbrotfractal > -12 && mandelbrotAnimation==false){
-            increaseMandelbrotfractal -= 1;
+        else if (key==OF_KEY_LEFT &&  fractals[7]->getLevel() > 3 && mandelbrotAnimation==false){
+              fractals[7]->setLevel(fractals[7]->getLevel()-1);
         }  
     }break;
         }

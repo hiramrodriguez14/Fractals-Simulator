@@ -8,16 +8,16 @@ SnowFlake::SnowFlake(glm::vec2 start, glm::vec2 end) {
     this->end = end;
 }
 
-void SnowFlake::draw(int n) {
+void SnowFlake::draw() {
     float size = 0.74 * ofGetHeight();
 
     glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
     glm::vec2 p2 = {(ofGetWidth() + size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
     glm::vec2 p3 = {ofGetWidth() / 2, (ofGetHeight() + size * sin(PI / 3)) / 2 + 0.15 * size};
 
-    draw(n, new SnowFlake(p1, p2));
-    draw(n, new SnowFlake(p2, p3));
-    draw(n, new SnowFlake(p3, p1));
+    draw(this->getLevel(), new SnowFlake(p1, p2));
+    draw(this->getLevel(), new SnowFlake(p2, p3));
+    draw(this->getLevel(), new SnowFlake(p3, p1));
 }
 void SnowFlake::draw(int n, SnowFlake *flake) {
     ofColor color;

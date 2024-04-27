@@ -16,11 +16,11 @@ Don't forget that you must also fill out an evaluation form in Moodle to conside
 ## Grading
 
 Partner 1: 802-21-3557 Yandiel Hernandez Otero yandiel.hernandez@upr.edu
-Partner 2: (STUDENT NUMBER HERE) (STUDENT NAME HERE) (STUDENT EMAIL HERE)
+Partner 2: (802-21-0787) (Hiram R. Rodriguez Hernandez) (hiram.rodriguez14@upr.edu)
 
 Any project that doesn't compile will receive a 0.
 
 If a partner has no commits in the repositories, they'll will receive a 0.
 
 ## Student Notes
-If you have any notes to add for your TA about the project specs or creative additions, you may do so in this section of the README:
+If you have any notes to add for your TA about the project specs or creative additions, you may do so in this section of the README: Added a complex fractal (a fractal with real and imaginary numbers) called mandelbrot, the draw was made iterative but the calculation of the complex coordinates was made recursively. Because it iterates over every pixel on the computer it is a little slow but i wish your computer can handle it ;p. Finally we added some chill music!

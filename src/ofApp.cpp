@@ -27,7 +27,7 @@ void ofApp::setup() {
     fractals.push_back(dragon);
     fractals.push_back(mandelbrot);
 
-    backgroundMusic.load("Music/Summer Night.mp3");
+    backgroundMusic.load("Sounds/Summer_Night.mp3");
 	backgroundMusic.setLoop(true);
 	backgroundMusic.play();
 }

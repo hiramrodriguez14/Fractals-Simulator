@@ -9,6 +9,7 @@ void ofApp::setup() {
     text.load("Fonts/fractalFont.otf",40);
     dataText.load("Fonts/fractalFont.otf",15);
 
+    //New pointers for fractal objects
     SierpinskiTriangle* sierpinski = new SierpinskiTriangle("Sierpinski", 10);
     Tree* tree = new Tree("Tree", 15);
     Fern* fern = new Fern("Bernsley Fern", 50);
@@ -18,6 +19,7 @@ void ofApp::setup() {
     SnowFlake* snowflake = new SnowFlake("Snowflake",6);
     Fractal3D* fractal3d = new Fractal3D("3D Fractal",9,&cam);
 
+    //Pushing the objects on the polymorphic vector fractals
     fractals.push_back(circle);
     fractals.push_back(tree);
     fractals.push_back(sierpinski);
@@ -27,6 +29,7 @@ void ofApp::setup() {
     fractals.push_back(dragon);
     fractals.push_back(mandelbrot);
 
+    //Music
     backgroundMusic.load("Sounds/Summer_Night.mp3");
 	backgroundMusic.setLoop(true);
 	backgroundMusic.play();
@@ -227,7 +230,7 @@ void ofApp::draw() {
     dataText.drawString("Press Right Arrow to level down the Recursion",1025,60);
     dataText.drawString("Press SpaceBar to start Animation",1025,90);
 
-    //When 'd' is pressed, extra information is drawn 
+    //When 'd' is pressed, extra information is drawn -----------------------------------------------------
     if (extra == true){
         dataText.drawString("Press 'd' to hide fractals info!",25,90);
         dataText.drawString("1.Circle level: "+to_string(fractals[0]->getLevel()),25,120);
@@ -245,6 +248,7 @@ void ofApp::draw() {
         dataText.drawString("Press 'd' to see fractals info!",25,90);
     }
     
+    //Draw logic for fractals--------------------------------------------------------------------------------
     switch (mode) {
     case '1': {
         // Circle
@@ -372,7 +376,7 @@ void ofApp::keyPressed(int key) {
         mode = key;
     }
 
-    //Extra info about fractals logic --------------------------------------------------
+    //Extra info about fractals logic ----------------------------------------
     if (tolower(key) == 'd'){
         if (extra == true){
             extra = false;

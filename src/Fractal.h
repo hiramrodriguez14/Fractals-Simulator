@@ -2,7 +2,7 @@
 #include <string>
 #include "ofMain.h"
 
-// Interface for Fractal
+// Interface for Fractals object
 class Fractal {
 public:
     

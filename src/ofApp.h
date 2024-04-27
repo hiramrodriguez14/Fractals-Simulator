@@ -20,6 +20,7 @@ class ofApp : public ofBaseApp {
 
     int ticks = 0;
 
+    //Animation variables
     bool increase = true; //Used for the animation only
     bool extra = false;
     bool circleAnimation = false;
@@ -31,7 +32,9 @@ class ofApp : public ofBaseApp {
     bool dragonAnimation = false;
     bool mandelbrotAnimation = false;
 
-     std::vector<Fractal*> fractals;
+    //Polymorphic vector
+    std::vector<Fractal*> fractals;
+
   public:
     void setup();
     void update();

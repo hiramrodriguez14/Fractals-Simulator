@@ -1,5 +1,8 @@
 #include "Mandelbrot.h"
 
+/*PD: This code didn't worked as expected, if you look at the internet for a mandelbrot set, it doesn't 
+look alike our mandelbrot, but ours turned to look like a four leaf clover!!!Interesting right?*/
+
 void Mandelbrot::draw(){
 
     draw(0, 0,this->getLevel(),ofGetWidth()*0.6+300,ofGetHeight()*-0.6+1200);
@@ -33,10 +36,11 @@ void Mandelbrot::draw(float x, float y, int n,float x2,float y2) {
     double dx = (xMax - xMin) /x2; 
     double dy = (yMax - yMin) / y2;    
     
-    // Loop atraves de cada píxel 
+    // Iteration on every pixel
     for (int i = 0; i < x2; i++) {
         for (int j = 0; j < y2; j++) {
          
+         //Complex variables
             double cx = xMin + (x + i) * dx;
             double cy = yMin + (y + j) * dy;
 

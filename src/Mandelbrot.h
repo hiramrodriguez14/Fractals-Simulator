@@ -12,11 +12,11 @@ public:
     void draw()override;
 private:
 
- 
+ //Limits of complex plane
     float xMin = -2.5; 
     float xMax = 1.0; 
     float yMin = -1.5;
-     float yMax = 1.5;
+    float yMax = 1.5;
 
     int calculateMandelbrot(double cx, double cy, int iteration, int n);
   

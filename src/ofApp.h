@@ -16,6 +16,7 @@ class ofApp : public ofBaseApp {
     char mode = '1';
     string s = "Fractals";
   
+    ofSoundPlayer backgroundMusic;
 
     int ticks = 0;
 

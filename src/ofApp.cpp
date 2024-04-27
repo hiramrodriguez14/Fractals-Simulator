@@ -26,6 +26,10 @@ void ofApp::setup() {
     fractals.push_back(fractal3d);
     fractals.push_back(dragon);
     fractals.push_back(mandelbrot);
+
+    backgroundMusic.load("Music/Summer Night.mp3");
+	backgroundMusic.setLoop(true);
+	backgroundMusic.play();
 }
 
 //--------------------------------------------------------------
@@ -240,8 +244,6 @@ void ofApp::draw() {
     }else{
         dataText.drawString("Press 'd' to see fractals info!",25,90);
     }
-    
-
     
     switch (mode) {
     case '1': {

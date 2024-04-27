@@ -1,6 +1,4 @@
-#include "Fractal3d.h"
-
-
+#include "Fractal3D.h"
 
 
 Fractal3D::~Fractal3D() {
@@ -17,9 +15,11 @@ vec3 Fractal3D::centerOf(vector<vec3>& points) {
 }
  
 void Fractal3D::draw(){
-     Fractal3D::draw(map<string, float> {{"n", this->getLevel()}, {"scale", 100}});
+    draw(map<string, float> {{"n", this->getLevel()}, {"scale", 100}});
+    Fractal3D::reset();
 }
 void Fractal3D::draw(map<string, float> drawConfig) {
+    cout<<drawConfig["n"]<<endl;
     if (!mesh.hasVertices() || currentMeshHasDetail != extrudeAllFaces) {
         float scale = drawConfig["scale"];
         vector<vec3> base = {
@@ -30,9 +30,9 @@ void Fractal3D::draw(map<string, float> drawConfig) {
         vec3 peak = {0.0, 0.0, 1.41421 * scale / 2};
         reset();
         mesh.setMode(OF_PRIMITIVE_TRIANGLES);
-        currentColor = ofColor::fromHsb(fmod(ofGetElapsedTimef() * 100, 255), 255, 255); // Cambia los valores según tus preferencias
+        currentColor = ofColor::fromHsb(fmod(ofGetElapsedTimef() * 100, 255), 255, 255); 
 
-    // Establece el color actual
+     
     ofSetColor(currentColor);
         generateTetrahedron(base, peak, drawConfig["n"]);
         mesh.setupIndicesAuto();
@@ -145,7 +145,7 @@ void Fractal3D::reset() {
 
 map<string, float> Fractal3D::getDefaultConfig() {
     return map<string, float> {
-        {"n", 3},
+        {"n", this->getLevel()},
         {"scale", 100}        
     };
 }

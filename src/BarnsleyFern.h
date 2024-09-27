@@ -1,4 +1,4 @@
-#pragma once
+push#pragma once
 #include "AbstractFractal.h"
 
 class Fern : public AbstractFractal {
